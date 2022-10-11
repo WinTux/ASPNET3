@@ -24,6 +24,7 @@ namespace ASPNET3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();//Para trabajar con sesiones
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,8 @@ namespace ASPNET3
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();//Poner las sesiones disponibles.
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
