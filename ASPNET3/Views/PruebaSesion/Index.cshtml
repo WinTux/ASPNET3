@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using ASPNET3.Herramientas;
+@using ASPNET3.Models;
+
+<h1>Ejemplos de sesión</h1>
+<h3>Datos primitivos</h3>
+Cantidad: @Context.Session.GetInt32("cantidad") <br/>
+Usuario: @Context.Session.GetString("usuario") <br/>
+
+<h3>Rescatando un objeto producto</h3>
+
+@{
+    Producto pro = Conversor.RecuperarObjeto<Producto>(Context.Session, "prod");
+}
+<br/>
+ID: @pro.id <br/>
+Nombre: @pro.Nombre <br/>
+Precio: @pro.precio <br/>
+
+<h3>Rescatando una lista de productos</h3>
+@{
+    List<Producto> pros = Conversor.RecuperarObjeto<List<Producto>>(Context.Session, "productos");
+}
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+    </tr>
+    @foreach (var p in pros){
+        <tr>
+            <td>@p.id</td>
+            <td>@p.Nombre</td>
+            <td>@p.precio</td>
+        </tr>
+    }
+</table>
