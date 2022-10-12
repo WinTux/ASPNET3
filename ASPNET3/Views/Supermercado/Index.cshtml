@@ -1,0 +1,19 @@
+﻿<h1>Productos disponibles</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+    </tr>
+    @foreach (Producto p in ViewBag.prods){
+        <tr>
+            <td>@p.id</td>
+            <td>@p.Nombre</td>
+            <td>@p.precio</td>
+            <td><img src="~/imagenes/@p.imagen" width="100"/></td>
+            <td><a asp-controller="Carrito" asp-action="Comprar" asp-route-idprod="@p.id">Agregar al carrito</a></td>
+        </tr>
+    }
+</table>
