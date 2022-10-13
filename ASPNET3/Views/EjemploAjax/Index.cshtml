@@ -1,0 +1,83 @@
+﻿<script type="text/javascript">
+    $(document).ready(function(){
+        $('#btnEjemplo1').click(function(){
+            $.ajax({
+                type: 'GET',
+                url: '/EjemploAjax/Ejemplo1',
+                success: function(texto){
+                    $('#salidaEjemplo1').html(texto);
+                }
+            });
+        });
+        $('#btnEjemplo2').click(function () {
+            var nombre = $('#nombre').val();
+            $.ajax({
+                type: 'GET',
+                url: '/EjemploAjax/ejemplo2/' + nombre,
+                success: function (saludo) {
+                    $('#salidaEjemplo2').html(saludo);
+                }
+            });
+        });
+        $('#btnEjemplo3').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/EjemploAjax/Ejemplo3',
+                success: function (prod) {
+                    var cadena = 'ID: ' + prod.id;
+                    cadena += '<br/>Nombre: ' + prod.nombre;
+                    cadena += '<br/>Precio: Bs.' + prod.precio;
+                    $('#salidaEjemplo3').html(cadena);
+                }
+            });
+        });
+        $('#btnEjemplo4').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/EjemploAjax/Ejemplo4',
+                success: function (productos) {
+                    var cadena = '<table border="1"><tr><th>ID</th><th>Nombre</th><th>Precio</th></tr>';
+                    for(var i = 0;i < productos.length; i++){
+                        cadena += '<tr>';
+                        cadena += '<td>' + productos[i].id + '</td>';
+                        cadena += '<td>' + productos[i].nombre + '</td>';
+                        cadena += '<td>' + productos[i].precio + '</td>';
+                        cadena += '</tr>';
+                    }
+                    cadena += '</table>';
+                    $('#salidaEjemplo4').html(cadena);
+                }
+            });
+        });
+        $('#productos').autocomplete({
+            //TODO completar esto y agregar jquery-ui
+        });
+    });
+
+</script>
+<h1>Ejemplo 1</h1>
+<input type="button" value="Obtener texto" id="btnEjemplo1"/>
+<br/>
+<span id="salidaEjemplo1"></span>
+
+<h1>Ejemplo 2</h1>
+Instroduzca su nombre: <input type="text" id="nombre"/>
+<br/>
+<input type="button" value="Obtener saludo" id="btnEjemplo2" />
+<br />
+<span id="salidaEjemplo2"></span>
+
+<h1>Ejemplo 3</h1>
+<input type="button" value="Obtener producto" id="btnEjemplo3" />
+<br />
+<span id="salidaEjemplo3"></span>
+
+<h1>Ejemplo 4</h1>
+<input type="button" value="Obtener productos" id="btnEjemplo4" />
+<br />
+<span id="salidaEjemplo4"></span>
+
+<h1>Ejemplo sugerencias</h1>
+<form>
+    Introduzca producto: <input type="text" id="productos"/>
+</form>
