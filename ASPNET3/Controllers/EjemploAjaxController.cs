@@ -59,10 +59,11 @@ namespace ASPNET3.Controllers
             return new JsonResult(productos);
         }
         [Produces("application/json")]
-        [HttpGet]
+        [HttpGet("buscar")]
         public async Task<IActionResult> Buscar() {
+            Console.WriteLine("Alcanzamos método");
             //Rescatamos el elemento desde la petición (query)
-            string subcadena = HttpContext.Request.Query["subcadena"].ToString();
+            string subcadena = HttpContext.Request.Query["term"].ToString();
 
             List<Producto> productos = new List<Producto>()
             {

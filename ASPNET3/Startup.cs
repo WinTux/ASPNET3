@@ -1,6 +1,8 @@
+using ASPNET3.Conexion;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,8 +25,14 @@ namespace ASPNET3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string conexion = Configuration.GetConnectionString("BaseDeDatosMySql");
+
             services.AddControllersWithViews();
             services.AddSession();//Para trabajar con sesiones
+
+            services.AddDbContext<EmpresaxDbContext>(
+                op => op.UseMySql(conexion, ServerVersion.AutoDetect(conexion))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
