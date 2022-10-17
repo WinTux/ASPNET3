@@ -9,5 +9,6 @@ namespace ASPNET3.Conexion
         public DbSet<Empleado> Empleados { get; set; }
         public EmpresaxDbContext(DbContextOptions<EmpresaxDbContext> options) : base(options)
         { }
+
     }
 }

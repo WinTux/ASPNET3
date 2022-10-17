@@ -1,0 +1,14 @@
+﻿@model ASPNET3.Models.Empleado
+
+<form asp-controller="BaseDeDatos" asp-action="eliminar" method="POST">
+    <table>
+        <tr>
+            <td>CI</td>
+            <td><input type = "text" asp-for="ci"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="ELIMINAR"/></td>
+        </tr>
+    </table>
+</form>

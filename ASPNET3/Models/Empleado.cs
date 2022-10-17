@@ -11,6 +11,7 @@ namespace ASPNET3.Models
         public int ci { get; set; }
         [Required]
         [MaxLength(40)]
+        [MinLength(2)]
         public string nombre { get; set; }
         [Required]
         [MaxLength(40)]
